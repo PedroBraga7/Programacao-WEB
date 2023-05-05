@@ -1,0 +1,86 @@
+public class StringDNA {
+    private String dna;
+
+    public StringDNA(String str) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (c == 'A' || c == 'C' || c == 'G' || c == 'T') {
+                sb.append(c);
+            }
+        }
+        dna = sb.toString();
+    }
+
+    public String paraString() {
+        return dna;
+    }
+
+    public char caractereEm(int posicao) {
+        return dna.charAt(posicao);
+    }
+
+    public int quantosA() {
+        return contarCaracter('A');
+    }
+
+    public int quantosC() {
+        return contarCaracter('C');
+    }
+
+    public int quantosG() {
+        return contarCaracter('G');
+    }
+
+    public int quantosT() {
+        return contarCaracter('T');
+    }
+
+    public int tamanho() {
+        return dna.length();
+    }
+
+    public StringDNA reversoComplementar() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = dna.length() - 1; i >= 0; i--) {
+            char c = dna.charAt(i);
+            if (c == 'A') {
+                sb.append('T');
+            } else if (c == 'C') {
+                sb.append('G');
+            } else if (c == 'G') {
+                sb.append('C');
+            } else if (c == 'T') {
+                sb.append('A');
+            }
+        }
+        return new StringDNA(sb.toString());
+    }
+
+    public int compara(StringDNA outro) {
+        int acumulador = 0;
+        int len = Math.min(dna.length(), outro.tamanho());
+        for (int i = 0; i < len; i++) {
+            char c1 = dna.charAt(i);
+            char c2 = outro.caractereEm(i);
+            if (c1 == c2) {
+                acumulador += 3;
+            } else if ((c1 == 'A' && c2 == 'T') || (c1 == 'T' && c2 == 'A')) {
+                acumulador += 1;
+            } else if ((c1 == 'C' && c2 == 'G') || (c1 == 'G' && c2 == 'C')) {
+                acumulador += 1;
+            }
+        }
+        return acumulador;
+    }
+
+    private int contarCaracter(char c) {
+        int contador = 0;
+        for (int i = 0; i < dna.length(); i++) {
+            if (dna.charAt(i) == c) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+}
