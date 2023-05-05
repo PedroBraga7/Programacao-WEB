@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teste Javascript</title>
+	<script>
+		function mostrarTexto() {
+			document.getElementById("texto").style.display = "block";
+		}
+	</script>
+</head>
+<body>
+	<h1><strong>Teste Javascript</strong></h1>
+	<a href="#" onclick="mostrarTexto()">Clique para ver o texto</a>
+	<p id="texto" style="display: none;">Ao clicar no botão acima, este texto aparece.</p>
+</body>
+</html>
